@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using serverLibrary.Respositories.contract;
+using System.Diagnostics;
 
 namespace keylogger_api.Controllers
 {
@@ -16,6 +17,7 @@ namespace keylogger_api.Controllers
         {
             if (user == null)
             {
+                Debug.WriteLine("Model is Empty"+user.FullName);
                 return BadRequest("Model is Empty");
             }
             var result = await accountInterface.CreateAsync(user);

@@ -1,3 +1,4 @@
+using keylogger_lib.DTO;
 using keylogger_lib.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -48,7 +49,7 @@ builder.Services.Configure<JwtSection>(builder.Configuration.GetSection("JwtSect
 
 //Repository Dependencies
 builder.Services.AddScoped<IuserAccount, UserAccountRepository>();
-builder.Services.AddScoped<IGenericRepositoryInterface<KeyloggerLog>, KeyloggerInfoRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<KeyLoggerInfo>, KeyloggerInfoRepository>();
 
 builder.Services.AddCors(options =>
 {
@@ -64,11 +65,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 app.UseHttpsRedirection();
 app.UseCors("AllowedBlazorWasm");
 
